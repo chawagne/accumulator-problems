@@ -82,7 +82,11 @@ Examples:
 - if you call multiplyNumbers([1,2,3], 0) you'd get [0,0,0]
 - if you call multiplyNumbers([1,2,3], 5) you'd get [5,10,15]
 */
-
+function multiplyNumbers(array, multiplier) {
+    return array.map(function(item) {
+        return item *= multiplier;
+    });
+};
 
 
 
@@ -104,7 +108,7 @@ function doubleLetters(string){
   array = string.split("");
   return array.map(function(item){
     return item += item;
-  }).join("","");
+  }).join("");
 };
 
 
@@ -127,9 +131,22 @@ Example: if you pass it ["a", "b", "c"] and ["d", "e", "f"] then it should retur
 NOTE: you can assume each input will be the same length
 */
 
+function interleave(array1, array2){
+var combined = [];
+  for (var i = 0; i < array1.length; i++) {
+    combined.push(array1[i]);
+    combined.push(array2[i]);
+  }
+return combined;
+}
 
-
-
+// function interleave(array1, array2) {
+//     var combined = array1.concat(array2);
+//     return combined.map(function(item) {
+//         return item;
+//     });
+//     return combined;
+// };
 
 
 
@@ -148,7 +165,13 @@ Example: if you pass it 4 and "Hello" then it should return ["Hello", "Hello", "
 */
 
 
-
+function createRange(number, defaultValue){
+  var range=[];
+  for (var i = 0; i < number; i++) {
+    range.push(defaultValue);
+  };
+  return range;
+}
 
 
 
@@ -166,7 +189,13 @@ Example:
 If you pass it ["quick", "brown", "fox"] then it should return { "quick": 0, "brown": 1, "fox": 2 }
 */
 
-
+function flipArray(array){
+  var range = {};
+    array.forEach(function (current, index, item){
+    range[current]=index;
+  });
+  return range;
+};
 
 
 
@@ -186,7 +215,13 @@ If you pass it [[2014, "Horse"], [2015, "Sheep"]] then it should return { 2014: 
 
 */
 
-
+function arraysToObject(array){
+  var object = {};
+  array.forEach(function (current, index, item){
+    object[current[0]]=current[1];
+  })
+  return object;
+}
 
 
 
@@ -206,6 +241,13 @@ Example:
 If you pass it "hello" then it should return "olleh"
 */
 
+function reverseString(string){
+  var reverse = "";
+  for (var i = 0; i < string.length; i++){
+    reverse += (string[(string.length)-1-i]);
+  }
+  return reverse;
+};
 
 
 
@@ -231,8 +273,9 @@ If you pass it "yay" then it should return false because it's odd
 If you pass it "heehaw" then it should return false because "hee" doesn't equal "haw"
 */
 
-
-
+function repeats(string) {
+    return (string.slice(0,string.length/2) === string.slice(string.length/2,string.length));
+}
 
 
 
@@ -250,7 +293,15 @@ Example:
 If you pass it "abcdef" then it should return "ace" because those represent every other letter
 */
 
-
+function everyOther(string) {
+    var result = "";
+    for (var i = 0; i < string.length; i++) {
+        if (i % 2 === 0) {
+          result +=string[i];
+        };
+    };
+return result;
+};
 
 
 
@@ -270,7 +321,27 @@ If you pass "aaa" it should return true
 If you pass "aba" it should return false
 */
 
+function allEqual (string){
+  if(string.split("").filter(function (value, index, item) {
+        return (value !== item[index-1]);
+  },0).join("").length <= 1){
+    return true;
+  };
+    return false;
+};
 
+
+//Eric's Code snippet
+// function allEqual(string) {
+//   if (string.split("").filter(function (item) {
+//     console.log('args', arguments);
+//     return true;
+//   }, 0).join('').length <= 1) {
+//     return true;
+//   };
+//
+//   return false;
+// }
 
 
 
