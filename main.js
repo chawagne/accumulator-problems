@@ -360,7 +360,12 @@ Example:
 If you pass "45" it should return 9
 If you pass "246" it should return 10
 */
-
+function sumLetters (string){
+  return string.split("").reduce(function(total, number){
+    return total += parseFloat(number);
+    console.log(total);
+  },0);
+}
 
 
 
@@ -379,7 +384,14 @@ Example:
 
 If you pass "you" it should return 2
 */
-
+function countVowels (string){
+  return string.split("").reduce(function (total, item) {
+    if (["a", "e", "i", "o", "u"].indexOf(item.toLowerCase()) != -1){
+      return total += 1;
+    }
+      return total;
+  },0);
+}
 
 
 
@@ -403,6 +415,13 @@ If you pass "you" it should return ["y", "o", "u"]
 NOTE: do not use the builtin `split` method
 */
 
+function split(string){
+  var array = [];
+  for (var i = 0; i < string.length; i++) {
+    array.push(string[i]);
+  }
+  return array;
+}
 
 
 
@@ -424,6 +443,11 @@ Example:
 If you pass "Hello" it should return [ 72, 101, 108, 108, 111 ]
 */
 
+function getCodePoints(string){
+  return string.split("").map(function (item) {
+    return item.codePointAt();
+  });
+};
 
 
 
@@ -443,7 +467,13 @@ Example:
 If you pass "Yo" it should return {Y: 0, o: 1}
 If you pass "Hello" it should return {H: 0, e: 1, l: 3, o: 4}
 */
-
+function letterMap(string){
+  var range = {};
+    string.split("").forEach(function (current, index, item){
+    range[current]=index;
+  });
+  return range;
+};
 
 
 
@@ -464,7 +494,16 @@ If you pass "Yo" it should return {Y: 1, o: 1}
 If you pass "Hello" it should return {"H": 1, "e": 1, "l": 2, "o": 1}
 */
 
-
+function letterCount(string){
+  var counts = {};
+    string.split("").forEach(function (current, index, item){
+      if (counts[current]===undefined){
+        counts[current]=0;
+      }
+    counts[current] +=1;
+  });
+  return counts;
+}
 
 
 
