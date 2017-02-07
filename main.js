@@ -524,6 +524,15 @@ If you pass 0,2 it should return false because the only number between 0 and 2 i
 If you pass 0,6 it should return true because between 0 and six (the numbers 1,2,3,4,5) there are three odds - 1, 3 and 5
 */
 
+function threeOdds(num1, num2){
+  var count = 0;
+  for (var i = num1+1; i < num2; i++) {
+    if (i % 2 === 1){
+      count +=1;
+    }
+  }
+  return (count>=3) ? true : false;
+  }
 
 
 
@@ -545,6 +554,13 @@ Example:
 If you pass "a", 3, "*" it should return "**a" - that is, a string of length 3, padded on the left by the "*" character
 */
 
+function leftPad(string, length, fill) {
+    var result = "";
+    for (var i = string.length; i < length; i++) {
+        result += fill;
+    }
+    return result += string;
+}
 
 
 
@@ -565,6 +581,13 @@ If you pass "a", 3 it should return "aaa"
 If you pass "b", 3 it should return "bb"
 */
 
+function createString(number, letter){
+  var result = "";
+   for (var i = 0; i < number; i++) {
+    result += letter;
+  }
+  return result;
+}
 
 
 
@@ -587,7 +610,13 @@ If you pass 4 it should return 24 since that's 4 * 3 * 2 * 1
 If you pass 5 it should return 120 since that's 5 * 4 * 3 * 2 * 1
 */
 
-
+function factorial (number){
+  result = 1;
+  for (var i = 0; i < number; i++) {
+    result = (number - i) * result;
+  }
+  return result;
+}
 
 
 
@@ -607,7 +636,13 @@ If you pass 1 it should return [1]
 If you pass 3 it should return [1,2,3]
 */
 
-
+function arrayOfNumbers(number){
+  array = [];
+  for (var i = 0; i < number; i++) {
+    array.unshift(number-i);
+  }
+  return array;
+}
 
 
 
@@ -626,7 +661,15 @@ Example:
 If you pass 1,4 it should return {"1": "odd", "2": "even", "3": "odd", "4": "even"}
 */
 
-
+function evenOdd(num1, num2){
+  var result = {};
+  for (var i = num1; i <= num2; i++) {
+    if (num1 + num2 !== 0){
+    i%2 ? result[i.toString()]="odd" : result[i.toString()]="even";
+  }
+  }
+  return result;
+}
 
 
 
