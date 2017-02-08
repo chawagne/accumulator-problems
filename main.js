@@ -661,14 +661,14 @@ Example:
 If you pass 1,4 it should return {"1": "odd", "2": "even", "3": "odd", "4": "even"}
 */
 
-function evenOdd(num1, num2){
-  var result = {};
-  for (var i = num1; i <= num2; i++) {
-    if (num1 + num2 !== 0){
-    i%2 ? result[i.toString()]="odd" : result[i.toString()]="even";
-  }
-  }
-  return result;
+function evenOdd(num1, num2) {
+    var result = {};
+    for (var i = num1; i <= num2; i++) {
+        if (num1 + num2 !== 0) {
+            i % 2 ? result[i.toString()] = "odd" : result[i.toString()] = "even";
+        }
+    }
+    return result;
 }
 
 
@@ -688,6 +688,19 @@ Example:
 
 If you pass 2,"d" it should return {"d": true, "dd": true}
 */
+
+//Note:  I hate this solution 😰
+function growingKeys(number, string) {
+    var result = {};
+    if (number === 0){
+      return result;
+    }
+    result[string]=true;
+    for (var i = 0; i < number-1; i++) {
+        result[Object.keys(result)[i]+string] = true;
+    }
+    return result;
+}
 
 
 
@@ -711,7 +724,12 @@ If you pass [1,1], 1 it should return true
 If you pass [1,2], 1 it should return false
 */
 
-
+function every (array, value){
+  var result = array.filter(function (item){
+    return (item === value);
+  });
+  return (array.length === result.length);
+};
 
 
 
@@ -731,7 +749,12 @@ If you pass [1,2], 1 it should return true
 If you pass [3,2], 1 it should return false
 */
 
-
+function some (array, value){
+  var result = array.filter(function (item){
+    return (item === value);
+  });
+  return result.length >= 1;
+};
 
 
 
@@ -743,7 +766,7 @@ If you pass [3,2], 1 it should return false
 CHALLENGE
 ----------------------------------------
 
-Write a function named some that takes an array and returns a string with the elements joined by commas, with a trailing 'and'
+Write a function named toSentence that takes an array and returns a string with the elements joined by commas, with a trailing 'and'
 
 Example:
 
@@ -751,6 +774,26 @@ If you pass ["Sue", "Will"] it should return "Sue and Will"
 If you pass ["Sue", "Will", "Rachel"] it should return "Sue, Will and Rachel"
 */
 
+function toSentence (array){
+  var sentence = "";
+  if (array.length === 2){
+    sentence += (array[0] + " and " + array[1]);
+    return sentence;
+  };
+
+  for (var i = 0; i < array.length; i++) {
+      if (i === array.length - 1){
+        sentence += (" and " + array[i]);
+      }
+      else if(i > 0){
+        sentence += (", " + array[i]);
+      }
+      else {
+        sentence += (array[i]);
+      }
+  }
+  return sentence;
+}
 
 
 
@@ -776,7 +819,11 @@ If you pass ["Sue", "Will"] it should return "SW"
 If you pass ["Java", Script", "Object", "Notation"] it should return "JSON"
 */
 
-
+function acronym (array){
+  return array.map(function (item) {
+          return item[0];
+      }).join("");
+}
 
 
 
@@ -795,6 +842,14 @@ Example:
 If you pass [0,-3,2,5] it should return -3
 */
 
+function min(array) {
+  if (array.length === 0){
+    return undefined;
+  }
+    return array.reduce(function(previous, current, index) {
+        return current < previous ? current : previous;
+    });
+}
 
 
 
@@ -818,6 +873,13 @@ If you pass [{id: 1, name: "Joe"}, {id: 2, name: "Sue"}] it should return {1: {i
 
 */
 
+function index (arrayOfObjects, name){
+  var object = {};
+  for (var i = 0; i < arrayOfObjects.length; i++) {
+    object[arrayOfObjects[i][name]]=arrayOfObjects[i];
+  }
+  return object;
+}
 
 
 
@@ -837,6 +899,12 @@ Example:
 If you pass {id: 1, name: "Joe"} it should return {1: "id", Joe: "name"}
 */
 
+function invert (object){
+  inverted = {}
+  console.log(Object.entries(object));
+
+  return inverted;
+}
 
 
 
