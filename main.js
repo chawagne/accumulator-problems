@@ -363,7 +363,6 @@ If you pass "246" it should return 10
 function sumLetters (string){
   return string.split("").reduce(function(total, number){
     return total += parseFloat(number);
-    console.log(total);
   },0);
 }
 
@@ -900,9 +899,14 @@ If you pass {id: 1, name: "Joe"} it should return {1: "id", Joe: "name"}
 */
 
 function invert (object){
-  inverted = {}
-  console.log(Object.entries(object));
-
+  var inverted = {};
+  var array = Object.entries(object);
+  var invertedArray = array.map(function (current){
+    return [current[1],current[0]];
+  });
+  invertedArray.forEach(function (current){
+    inverted[current[0]]=current[1];
+  })
   return inverted;
 }
 
@@ -927,7 +931,20 @@ Example:
 If you pass {"contract": "foo"}, "Fred" it should return {"contract-signed": "foo - Fred"}
 */
 
-
+function addSignature(name, object){
+  if (typeof name !== "string"){
+    return {};
+  };
+  var signed = {};
+  var array = Object.entries(object);
+  var signedArray = array.map(function (current){
+    return [current[0]+"-signed",current[1]+ " - " + name];
+  });
+  signedArray.forEach(function (current){
+    signed[current[0]]=current[1];
+  });
+return signed;
+};
 
 
 
@@ -945,7 +962,12 @@ Example:
 
 If you pass {name: "Will", age: 24} it should return ["name - will", "age - 24"]
 */
-
+function pairs (object) {
+  var array = Object.entries(object);
+  return array.map(function(current){
+    return current[0] + " - " + current[1];
+  });
+}
 
 
 
@@ -965,6 +987,12 @@ Example:
 If you pass {a: 1, b: 2} it should return 3
 */
 
+function sumValues(object){
+  var array = Object.entries(object);
+  return array.reduce(function (total, current){
+    return total += current[1];
+  },0);
+}
 
 
 
@@ -984,7 +1012,15 @@ Example:
 If you pass {1999: 4036, 2000: 7654} it should return '2000'
 */
 
-
+function biggestProperty(object){
+  var array = Object.entries(object);
+  if (array.length === 0){
+    return undefined;
+  }
+  return array.reduce(function (previous, current){
+    return current[1] > previous[1] ? current : previous;
+  },[0,0])[0];
+}
 
 
 
@@ -1009,6 +1045,15 @@ Example:
 If you pass {1999: 4036, 2000: 7654} and 4036, it should return '1999'
 */
 
+function keyForValue(object, value) {
+    console.log(Object.keys(object));
+    console.log(Object.values(object));
+    for (var key in object) {
+       if (object[key]===value){
+         return key;
+       }
+    };
+};
 
 
 
@@ -1030,7 +1075,16 @@ Example:
 If you pass {1999: 4036, 2000: 7654} and 4036, it should return true
 */
 
+function containsValue(object, value) {
 
+    var keys = Object.keys(object).filter(function(item) {
+        return item === value;
+    });
+    var pairs = Object.values(object).filter(function(item) {
+        return item === value;
+    });
+    return (keys.concat(pairs)).length !== 0
+}
 
 
 
