@@ -331,17 +331,6 @@ function allEqual (string){
 };
 
 
-//Eric's Code snippet
-// function allEqual(string) {
-//   if (string.split("").filter(function (item) {
-//     console.log('args', arguments);
-//     return true;
-//   }, 0).join('').length <= 1) {
-//     return true;
-//   };
-//
-//   return false;
-// }
 
 
 
@@ -898,18 +887,27 @@ Example:
 If you pass {id: 1, name: "Joe"} it should return {1: "id", Joe: "name"}
 */
 
-function invert (object){
-  var inverted = {};
-  var array = Object.entries(object);
-  var invertedArray = array.map(function (current){
-    return [current[1],current[0]];
-  });
-  invertedArray.forEach(function (current){
-    inverted[current[0]]=current[1];
-  })
-  return inverted;
+// function invert (object){
+//   var inverted = {};
+//   var array = Object.entries(object);
+//   var invertedArray = array.map(function (current){
+//     return [current[1],current[0]];
+//   });
+//   invertedArray.forEach(function (current){
+//     inverted[current[0]]=current[1];
+//   })
+//   return inverted;
+// }
+function invert(object) {
+    var inverted = {};
+    var array = Object.entries(object);
+    array.map(function(current) {
+        return [current[1], current[0]];
+    }).forEach(function(current) {
+        inverted[current[0]] = current[1];
+    });
+    return inverted;
 }
-
 
 
 
@@ -1046,8 +1044,6 @@ If you pass {1999: 4036, 2000: 7654} and 4036, it should return '1999'
 */
 
 function keyForValue(object, value) {
-    console.log(Object.keys(object));
-    console.log(Object.values(object));
     for (var key in object) {
        if (object[key]===value){
          return key;
