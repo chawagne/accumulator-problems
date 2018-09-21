@@ -1,5 +1,7 @@
 # Accumulator Problems
 
+This project is Galvanize coursework I completed in early 2017.
+
 These are exercises to help you learn how to write basic algorithms 
 and test your understanding on programming logic.
 
